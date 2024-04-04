@@ -10,10 +10,11 @@ import android.os.Bundle
 import androidx.annotation.OptIn
 import androidx.media3.common.MediaItem
 import androidx.media3.common.audio.AudioProcessor
-import androidx.media3.common.audio.BaseAudioProcessor
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.audio.AudioSink
+import androidx.media3.exoplayer.audio.BaseAudioProcessor
 import androidx.media3.exoplayer.audio.DefaultAudioSink
 import androidx.media3.ui.PlayerView
 import java.nio.ByteBuffer
@@ -64,7 +65,8 @@ private class DummyRenderersFactory(context: Context) : DefaultRenderersFactory(
         context: Context,
         enableFloatOutput: Boolean,
         enableAudioTrackPlaybackParams: Boolean,
-    ) = DefaultAudioSink.Builder(context)
+        enableOffload: Boolean
+    ) = DefaultAudioSink.Builder()
         .setAudioProcessors(arrayOf(DummyProcessor()))
         .setEnableFloatOutput(enableFloatOutput)
         .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
